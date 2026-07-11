@@ -1,8 +1,11 @@
+import cors from "cors";
 import express from "express";
 import { prisma } from "./prisma";
 import { generateSlots } from "./slots";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 const PORT  = process.env.PORT || 4000;
 
 app.use(express.json());
