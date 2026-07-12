@@ -4,7 +4,14 @@ import { prisma } from "./prisma";
 import { generateSlots } from "./slots";
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL || "",
+].filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins }));
+
 app.use(express.json());
 const PORT  = process.env.PORT || 4000;
 
