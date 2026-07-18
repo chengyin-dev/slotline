@@ -10,7 +10,6 @@
   --line: #e3ddd4;        /* hairline */
   --line-strong: #cfc6b9;
   --brass: #a17c4b;
-  --brass-soft: #f0e7da;
 
   --u: 8px;
   --u2: 16px;
@@ -190,13 +189,9 @@ body {
   font-size: 1.05rem; font-weight: 400; color: var(--ink);
 }
 
-/* ---------- table ---------- */
-.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.table {
-  width: 100%; min-width: 620px;
-  border-collapse: collapse; font-size: .95rem;
-  background: var(--surface);   /* paints across full scroll width */
-}
+/* ---------- table (desktop) ---------- */
+.table-wrap { width: 100%; }
+.table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 .table th {
   text-align: left;
   font-size: .62rem; font-weight: 400; color: var(--ink-soft);
@@ -204,17 +199,16 @@ body {
   padding: 0 var(--u3) var(--u2) 0;
   border-bottom: 1px solid var(--line-strong);
   white-space: nowrap;
-  background: var(--surface);
 }
 .table td {
   padding: var(--u3) var(--u3) var(--u3) 0;
   border-bottom: 1px solid var(--line);
-  vertical-align: middle; white-space: nowrap;
+  vertical-align: middle;
   font-variant-numeric: tabular-nums;
-  background: var(--surface);
 }
 .table tr:last-child td { border-bottom: none; }
 .table td:first-child { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; }
+.cell-action { text-align: right; }
 
 /* ---------- badges ---------- */
 .badge {
@@ -246,8 +240,37 @@ body {
   .topbar { padding: var(--u3); }
   .day { padding: var(--u4) 0; }
   .slot { flex: 1 1 auto; }
-  .card { padding: var(--u3) var(--u2); }
-  .table th, .table td { padding-right: var(--u2); }
+
+  /* table becomes stacked blocks — no horizontal scroll */
+  .card { border: none; background: transparent; padding: 0; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table thead { display: none; }
+  .table tr {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: var(--u3);
+    margin-bottom: var(--u2);
+  }
+  .table td {
+    border: none; padding: 6px 0;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--u2); text-align: right;
+  }
+  .table td::before {
+    content: attr(data-label);
+    flex: 0 0 auto; text-align: left;
+    font-size: .6rem; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: .18em;
+  }
+  .table td:first-child {
+    font-size: 1.35rem; padding-bottom: var(--u2);
+    margin-bottom: var(--u); border-bottom: 1px solid var(--line);
+  }
+  .table td:first-child::before { display: none; }
+  .table td:first-child { justify-content: flex-start; text-align: left; }
+  .cell-action { justify-content: flex-end; padding-top: var(--u2); }
+  .cell-action::before { display: none; }
 }
 
 :focus-visible { outline: 1px solid var(--brass); outline-offset: 3px; }

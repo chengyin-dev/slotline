@@ -45,7 +45,7 @@ function DashboardPage() {
         <div className="empty">No bookings yet. New bookings will show up here.</div>
       ) : (
         <div className="card">
-          <div className="table-warp">
+          <div className="table-wrap">
             <table className="table">
               <thead>
                 <tr>
@@ -59,17 +59,27 @@ function DashboardPage() {
               <tbody>
                 {bookings.map((b) => (
                   <tr key={b.id}>
-                    <td>{b.name}</td>
-                    <td>{b.email}</td>
-                    <td>{formatDay(b.startTime)} at {formatTime(b.startTime)}</td>
-                    <td>
-                      <span className={"badge " + (b.status === "confirmed" ? "badge-ok" : "badge-off")}>
+                    <td data-label="Name">{b.name}</td>
+                    <td data-label="Email">{b.email}</td>
+                    <td data-label="When">
+                      {formatDay(b.startTime)} at {formatTime(b.startTime)}
+                    </td>
+                    <td data-label="Status">
+                      <span
+                        className={
+                          "badge " + (b.status === "confirmed" ? "badge-ok" : "badge-off")
+                        }
+                      >
                         {b.status}
                       </span>
                     </td>
-                    <td>
+                    <td className="cell-action">
                       {b.status === "confirmed" && (
-                        <button className="btn-ghost" onClick={() => handleCancel(b.id)} disabled={busy}>
+                        <button
+                          className="btn-ghost"
+                          onClick={() => handleCancel(b.id)}
+                          disabled={busy}
+                        >
                           Cancel
                         </button>
                       )}
