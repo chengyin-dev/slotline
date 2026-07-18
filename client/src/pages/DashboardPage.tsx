@@ -45,38 +45,40 @@ function DashboardPage() {
         <div className="empty">No bookings yet. New bookings will show up here.</div>
       ) : (
         <div className="card">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>When</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((b) => (
-                <tr key={b.id}>
-                  <td>{b.name}</td>
-                  <td>{b.email}</td>
-                  <td>{formatDay(b.startTime)} at {formatTime(b.startTime)}</td>
-                  <td>
-                    <span className={"badge " + (b.status === "confirmed" ? "badge-ok" : "badge-off")}>
-                      {b.status}
-                    </span>
-                  </td>
-                  <td>
-                    {b.status === "confirmed" && (
-                      <button className="btn-ghost" onClick={() => handleCancel(b.id)} disabled={busy}>
-                        Cancel
-                      </button>
-                    )}
-                  </td>
+          <div className="table-warp">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>When</th>
+                  <th>Status</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {bookings.map((b) => (
+                  <tr key={b.id}>
+                    <td>{b.name}</td>
+                    <td>{b.email}</td>
+                    <td>{formatDay(b.startTime)} at {formatTime(b.startTime)}</td>
+                    <td>
+                      <span className={"badge " + (b.status === "confirmed" ? "badge-ok" : "badge-off")}>
+                        {b.status}
+                      </span>
+                    </td>
+                    <td>
+                      {b.status === "confirmed" && (
+                        <button className="btn-ghost" onClick={() => handleCancel(b.id)} disabled={busy}>
+                          Cancel
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
