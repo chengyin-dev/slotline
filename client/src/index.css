@@ -191,8 +191,12 @@ body {
 }
 
 /* ---------- table ---------- */
-.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: .95rem; }
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table {
+  width: 100%; min-width: 620px;
+  border-collapse: collapse; font-size: .95rem;
+  background: var(--surface);   /* paints across full scroll width */
+}
 .table th {
   text-align: left;
   font-size: .62rem; font-weight: 400; color: var(--ink-soft);
@@ -200,12 +204,14 @@ body {
   padding: 0 var(--u3) var(--u2) 0;
   border-bottom: 1px solid var(--line-strong);
   white-space: nowrap;
+  background: var(--surface);
 }
 .table td {
   padding: var(--u3) var(--u3) var(--u3) 0;
   border-bottom: 1px solid var(--line);
   vertical-align: middle; white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  background: var(--surface);
 }
 .table tr:last-child td { border-bottom: none; }
 .table td:first-child { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; }
@@ -240,6 +246,8 @@ body {
   .topbar { padding: var(--u3); }
   .day { padding: var(--u4) 0; }
   .slot { flex: 1 1 auto; }
+  .card { padding: var(--u3) var(--u2); }
+  .table th, .table td { padding-right: var(--u2); }
 }
 
 :focus-visible { outline: 1px solid var(--brass); outline-offset: 3px; }
