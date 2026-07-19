@@ -74,7 +74,7 @@ app.post("/api/bookings", async (req, res) => {
             where: { startTime: new Date(startTime), status: "confirmed"},
         });
         if (existing) {
-            res.status(409).json({errro: "Slot no longer available"});
+            res.status(409).json({error: "Slot no longer available"});
             return;
         }
 
